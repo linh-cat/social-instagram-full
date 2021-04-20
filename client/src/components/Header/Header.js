@@ -8,6 +8,7 @@ import explore from "../../assets/explore.svg";
 import home from "../../assets/home.svg";
 import exit from "../../assets/exit.svg";
 import heart from "../../assets/heart.svg";
+import plus from "../../assets/plus.svg";
 
 function Header() {
   let history = useHistory();
@@ -36,8 +37,8 @@ function Header() {
           <img src={explore} alt="" />
           <img src={heart} alt="" />
           <img src={exit} alt="" onClick={logout} />
-
           <p>Hello {user}</p>
+          <img src={plus} alt="" onClick={() => history.push("/new")} />
         </div>
       </div>
     </header>

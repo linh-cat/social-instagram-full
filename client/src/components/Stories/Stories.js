@@ -6,7 +6,6 @@ import story1 from "../../assets/img/1.jpg";
 import story2 from "../../assets/img/2.jpg";
 import story3 from "../../assets/img/3.jpg";
 import story4 from "../../assets/img/4.jpg";
-
 function Stories() {
   return (
     <section className="stories">
