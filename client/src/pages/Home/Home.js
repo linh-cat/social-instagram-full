@@ -3,13 +3,23 @@ import axios from "../../axios";
 import Stories from "../../components/Stories/Stories";
 import more from "../../assets/more.svg";
 import like from "../../assets/like.svg";
-import comment from "../../assets/comment.svg";
+import commentIcon from "../../assets/comment.svg";
 import send from "../../assets/send.svg";
 import avatar from "../../assets/img/static.jpg";
+import smile from "../../assets/smile.svg";
 import "./Home.css";
+import { useHistory } from "react-router-dom";
 
 function Home() {
+  let history = useHistory();
   const [posts, setPosts] = useState([]);
+  const [success, setSuccess] = useState("");
+  const [comment, setComment] = useState("");
+
+  const commentBody = {
+    username: localStorage.getItem("username"),
+    body: comment,
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -19,6 +29,17 @@ function Home() {
     }
     fetchData();
   }, []);
+
+  const postComment = (e, id) => {
+    e.preventDefault();
+    console.log(commentBody);
+    let resp = axios.post(`/post/comment/${id}`, commentBody);
+    if (resp.data) {
+      setSuccess(resp.data);
+      console.log(success);
+      setComment("");
+    }
+  };
 
   const handleLike = (id, key) => {
     var templateLikes = posts;
@@ -33,6 +54,11 @@ function Home() {
         setPosts(templateLikes);
         window.location.reload();
       });
+  };
+
+  const deletePost = (id) => {
+    console.log(id);
+    axios.delete(`/post/${id}`).then(window.location.reload());
   };
 
   return (
@@ -50,8 +76,15 @@ function Home() {
                   <span className="place">{val.location}</span>
                 </div>
               </div>
-
-              <img src={more} alt="More" />
+              <div className="dropdown">
+                <img src={more} alt="More" className="more" />
+                <div className="menu__content">
+                  <p className="edit">Edit</p>
+                  <p className="delete" onClick={() => deletePost(val.id)}>
+                    Delete
+                  </p>
+                </div>
+              </div>
             </header>
             <img src={`http://localhost:3001/files/${val.image}`} alt="" />
             <footer>
@@ -65,10 +98,10 @@ function Home() {
                   />
                 </button>
                 <img
-                  src={comment}
+                  src={commentIcon}
                   alt="comment"
                   title="comment"
-                  onClick={() => alert("this function incomplete!")}
+                  onClick={() => history.push(`/post/${val.id}`)}
                 />
                 <img
                   src={send}
@@ -79,6 +112,16 @@ function Home() {
               </div>
               <strong>{val.likes} Likes</strong>
               <p>{val.body}</p>
+
+              <div className="comment">
+                <img src={smile} alt="" />
+                <input
+                  type="text"
+                  placeholder="Add comment"
+                  onChange={(e) => setComment(e.target.value)}
+                />
+                <p onClick={(e) => postComment(e, val.id)}>UP</p>
+              </div>
             </footer>
           </article>
         </section>

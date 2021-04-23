@@ -36,9 +36,11 @@ function Header() {
           <img src={send} alt="" />
           <img src={explore} alt="" />
           <img src={heart} alt="" />
-          <img src={exit} alt="" onClick={logout} />
-          <p>Hello {user}</p>
           <img src={plus} alt="" onClick={() => history.push("/new")} />
+          <img src={exit} alt="" onClick={logout} />
+        </div>
+        <div>
+          <h4>Hi {user}</h4>
         </div>
       </div>
     </header>

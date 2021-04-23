@@ -14,6 +14,7 @@
 }
 .login a {
   color: #e0463f;
+  margin-bottom: 10px;
 }
 .login input {
   margin-bottom: 10px;
@@ -66,4 +67,12 @@
   color: #bc1888;
   margin: 2px 0;
   margin-bottom: 10px;
+}
+
+.displayError {
+  display: block;
+}
+
+.removeError {
+  display: none;
 }

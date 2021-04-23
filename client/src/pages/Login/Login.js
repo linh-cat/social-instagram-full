@@ -47,9 +47,7 @@ function Login() {
         onChange={(e) => setPassword(e.target.value)}
       />
       {errors && <p className="errors">{errors}</p>}
-      <Link to="/register">
-        <p>You don't an account</p>
-      </Link>
+      <Link to="/register">You don't an account</Link>
       <button type="submit" onClick={login}>
         Login
       </button>
