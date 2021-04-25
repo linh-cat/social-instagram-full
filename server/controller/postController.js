@@ -11,7 +11,7 @@ module.exports = {
     });
   },
 
-  async siglePost(req, res) {
+  async singlePost(req, res) {
     let postId = req.params.postId;
     db.query("SELECT * FROM posts WHERE id = ?;", postId, (err, result) => {
       if (err) throw err;
@@ -92,7 +92,6 @@ module.exports = {
             "insert into posts_comment (post_id, comment_id)  values (?, ?);",
             [postId, result1.insertId]
           );
-          res.send("Comment successfully!");
         }
       }
     );
@@ -104,6 +103,28 @@ module.exports = {
     db.query(
       "select comment.username, comment.body from posts_comment join posts on posts_comment.post_id = posts.id join comment on posts_comment.comment_id = comment.id where  posts.id = ?;",
       postId,
+      (err, result) => {
+        if (err) throw err;
+        res.send(result);
+      }
+    );
+  },
+
+  async getPostById(req, res) {
+    let postId = req.params.id;
+
+    db.query("select *  from posts where id = ?", postId, (err, result) => {
+      if (err) throw err;
+      res.send(result);
+    });
+  },
+
+  async getPostByUser(req, res) {
+    let username = req.params.username;
+
+    db.query(
+      "select * from posts where author = ?",
+      username,
       (err, result) => {
         if (err) throw err;
         res.send(result);

@@ -5,7 +5,13 @@ module.exports = {
   async register(req, res) {
     const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
-    const { username, email, password, confirmPassword } = req.body;
+    const {
+      username,
+      email,
+      password,
+      confirmPassword,
+      information,
+    } = req.body;
     const testMail = {
       email,
     };
@@ -59,8 +65,8 @@ module.exports = {
           return;
         } else {
           db.query(
-            "INSERT INTO users (username, email, password) VALUES (?, ?, ?);",
-            [username, email, password],
+            "INSERT INTO users (username, email, password, information) VALUES (?, ?, ?, ?);",
+            [username, email, password, information],
             (err, result) => {
               if (err) throw err;
               res.json({
@@ -91,10 +97,12 @@ module.exports = {
     db.query("SELECT * FROM users WHERE email = ?", [email], (err, result) => {
       if (err) throw err;
       let user = JSON.parse(JSON.stringify(result));
+      // console.log(user);
       if (user.length > 0) {
         if (password === user[0].password) {
           res.json({
             loggedIn: true,
+            userId: user[0].id,
             username: user[0].username,
           });
         } else {
@@ -109,6 +117,15 @@ module.exports = {
           message: "User doesn't exist",
         });
       }
+    });
+  },
+
+  async getUserById(req, res) {
+    let id = req.params.id;
+
+    db.query("select * from users where id  = ?;", id, (err, result) => {
+      if (err) throw err;
+      res.send(result);
     });
   },
 };
