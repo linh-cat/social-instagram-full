@@ -13,7 +13,6 @@ import { useHistory } from "react-router-dom";
 function Home() {
   let history = useHistory();
   const [posts, setPosts] = useState([]);
-  const [success, setSuccess] = useState("");
   const [comment, setComment] = useState("");
 
   const commentBody = {
@@ -32,13 +31,16 @@ function Home() {
 
   const postComment = (e, id) => {
     e.preventDefault();
-    console.log(commentBody);
-    let resp = axios.post(`/post/comment/${id}`, commentBody);
-    if (resp.data) {
-      setSuccess(resp.data);
-      console.log(success);
-      setComment("");
+
+    if (commentBody.body === "") {
+      alert("No body comment!");
+      return;
     }
+
+    axios.post(`/post/comment/${id}`, commentBody);
+
+    alert("Comment Successfully!");
+    window.location.reload();
   };
 
   const handleLike = (id, key) => {
@@ -120,7 +122,9 @@ function Home() {
                   placeholder="Add comment"
                   onChange={(e) => setComment(e.target.value)}
                 />
-                <p onClick={(e) => postComment(e, val.id)}>UP</p>
+                <button type="reset" onClick={(e) => postComment(e, val.id)}>
+                  Comment
+                </button>
               </div>
             </footer>
           </article>

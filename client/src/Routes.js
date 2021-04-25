@@ -6,6 +6,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import New from "./pages/New/New";
 import SinglePost from "./pages/SinglePost/SinglePost";
+import Profile from "./pages/Profile/Profile";
 
 function Routes() {
   return (
@@ -15,6 +16,7 @@ function Routes() {
       <Auth exact path="/" component={Home} />
       <Auth exact path="/new" component={New} />
       <Auth exact path="/post/:postId" component={SinglePost} />
+      <Auth exact path="/user/:userId" component={Profile} />
     </Switch>
   );
 }

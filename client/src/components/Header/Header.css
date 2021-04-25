@@ -40,6 +40,44 @@
 .header__content--icons img {
   margin: 0 5px;
 }
+.dropdown-user img {
+  margin-right: 10px;
+}
+
+.dropdown-user .avatar {
+  width: 25px;
+  height: 25px;
+}
+
+.dropdown-user {
+  position: relative;
+}
+.dropdown-user:hover .user-content {
+  display: block;
+}
+.user-content {
+  position: absolute;
+  left: -90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 10px;
+  display: none;
+  width: 200px;
+}
+
+.user-content div {
+  display: flex;
+  align-items: center;
+  /* margin: 10px 0px; */
+  cursor: pointer;
+  padding: 5px 20px;
+}
+
+.user-content div:hover {
+  background: #ddd;
+}
 
 /* Responesive */
 @media (max-width: 792px) {

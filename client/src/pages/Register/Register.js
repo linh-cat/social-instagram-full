@@ -11,12 +11,14 @@ function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState("");
+  const [information, setInformation] = useState("");
 
   const user = {
     username,
     email,
     password,
     confirmPassword,
+    information,
   };
 
   const register = async (e) => {
@@ -33,6 +35,7 @@ function Register() {
     } catch (error) {
       console.log(error);
     }
+    console.log(user);
   };
 
   const redirectLogin = () => {
@@ -61,6 +64,11 @@ function Register() {
         type="password"
         placeholder="Confirm Password"
         onChange={(e) => setConfirmPassword(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Information"
+        onChange={(e) => setInformation(e.target.value)}
       />
 
       {errors && <p className="errors">{errors}</p>}

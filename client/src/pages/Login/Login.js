@@ -23,6 +23,7 @@ function Login() {
       if (resp.data.loggedIn) {
         localStorage.setItem("loggedIn", true);
         localStorage.setItem("username", resp.data.username);
+        localStorage.setItem("userId", resp.data.userId);
         history.push("/");
         window.location.reload();
       } else {

@@ -1,0 +1,121 @@
+.profile {
+  margin-top: 80px;
+}
+.profile header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 610px;
+  margin: 0 auto;
+}
+.profile header img {
+  width: 150px;
+  height: 150px;
+  margin-right: 20px;
+}
+.profile .profile__content div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.profile .profile__content p {
+  margin-bottom: 10px;
+}
+.profile header h3 {
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+.profile header button {
+  margin-bottom: 5px;
+  border: 1px solid #ddd;
+  padding: 5px;
+  background: none;
+  outline: none;
+}
+.profile header button:hover {
+  cursor: pointer;
+  background-color: #ddd;
+}
+
+.story {
+  width: 100%;
+  max-width: 610px;
+  margin: 70px auto 20px;
+}
+.story figure picture img {
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  border: 2px solid #e6683c;
+  margin-right: 10px;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -webkit-clip-path: circle(50%);
+  clip-path: circle(50%);
+  cursor: pointer;
+}
+.story figure picture {
+  padding: 10px;
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.story figure picture::-webkit-scrollbar {
+  display: none;
+}
+
+.profile .list__post {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  margin: 60px auto 50px;
+}
+
+.profile .list__post {
+  width: 100%;
+  max-width: 710px;
+}
+.profile .list__icon {
+  display: flex;
+  align-items: center;
+  display: none;
+}
+
+.profile .list__post--item:hover .list__icon {
+  display: block;
+  display: flex;
+}
+.profile .list__post--item:hover .post-image {
+  opacity: 0.9;
+}
+
+.profile .list__post .list__post--item {
+  width: 250px;
+  height: 280px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  position: relative;
+}
+.profile .list__post .list__post--item .post-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.profile .list__icon p {
+  color: #fff;
+  margin-right: 10px;
+}
+
+.profile .list__icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.profile .list__icon .MuiSvgIcon-root {
+  color: #fff;
+  z-index: 1;
+  margin-right: 10px;
+}

@@ -107,6 +107,7 @@ footer p {
   border-top: 1px solid #dbdbdb;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 15px;
   margin-top: 10px;
 }
@@ -118,8 +119,15 @@ footer p {
 .comment img {
   width: 25px;
   height: 25px;
+  margin-right: 10px;
 }
-.comment p {
-  color: rgb(42, 100, 167);
+.comment button {
+  background: none;
+  border: 1px solid #ddd;
+  padding: 10px;
   cursor: pointer;
+  outline: none;
+}
+.comment button:hover {
+  background: #ddd;
 }

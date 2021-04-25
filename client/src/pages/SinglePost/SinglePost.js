@@ -8,6 +8,7 @@ import smile from "../../assets/smile.svg";
 
 function SinglePost() {
   const [comments, setComments] = useState([]);
+  const [comment, setComment] = useState("");
   const [post, setPost] = useState({});
   let { postId } = useParams();
 
@@ -15,16 +16,32 @@ function SinglePost() {
     async function fetchPost() {
       let respPost = await axios.get(`/post/${postId}`);
       setPost(respPost.data[0]);
-      //   console.log(respPost.data[0]);
     }
     async function fetchComment() {
       let respComment = await axios.get(`/post/comment/${postId}`);
       setComments(respComment.data);
-      //   console.log(respComment.data);
     }
     fetchPost();
     fetchComment();
-  }, []);
+  }, [postId]);
+
+  const commentBody = {
+    username: localStorage.getItem("username"),
+    body: comment,
+  };
+  const postComment = (e, id) => {
+    e.preventDefault();
+
+    if (commentBody.body === "") {
+      alert("No body comment!");
+      return;
+    }
+
+    axios.post(`/post/comment/${id}`, commentBody);
+
+    alert("Comment Successfully!");
+    window.location.reload();
+  };
 
   return (
     <div className="single__post">
@@ -57,8 +74,14 @@ function SinglePost() {
         </div>
         <div className="comment">
           <img src={smile} alt="" />
-          <input type="text" placeholder="Add comment" />
-          <p>UP</p>
+          <input
+            type="text"
+            placeholder="Your comment"
+            onChange={(e) => setComment(e.target.value)}
+          />
+          <button type="button" onClick={(e) => postComment(e, post.id)}>
+            Comment
+          </button>
         </div>
       </div>
     </div>
