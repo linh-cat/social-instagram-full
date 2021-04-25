@@ -40,6 +40,8 @@ Please make sure to update tests as appropriate.
 ![register](./image/register.png)
 ![homepage](./image/homepage.png)
 ![upload](./image/upload.png)
+![post](./image/post.png)
+![profile](./image/profile.png)
 
 ## License
 
