@@ -1,17 +1,10 @@
-const bcrypt = require("bcrypt");
 const db = require("../config/db");
 
 module.exports = {
   async register(req, res) {
     const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
-    const {
-      username,
-      email,
-      password,
-      confirmPassword,
-      information,
-    } = req.body;
+    const { username, email, password, confirmPassword, address } = req.body;
     const testMail = {
       email,
     };
@@ -65,8 +58,8 @@ module.exports = {
           return;
         } else {
           db.query(
-            "INSERT INTO users (username, email, password, information) VALUES (?, ?, ?, ?);",
-            [username, email, password, information],
+            "INSERT INTO users (username, email, password, address)  VALUES (?, ?, ?, ?);",
+            [username, email, password, address],
             (err, result) => {
               if (err) throw err;
               res.json({

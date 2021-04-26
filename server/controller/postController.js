@@ -72,10 +72,17 @@ module.exports = {
   async detelePost(req, res) {
     let id = req.params.id;
 
-    db.query("DELETE FROM posts WHERE id = ?", id, (err, result) => {
-      if (err) throw err;
-      res.send(result);
-    });
+    db.query(
+      "delete from posts_comment where post_id = ?;",
+      id,
+      (err, result) => {
+        if (err) throw err;
+        db.query("DELETE FROM posts WHERE id = ?", id, (err, result1) => {
+          if (err) throw err;
+          res.send(result1);
+        });
+      }
+    );
   },
 
   async commentPost(req, res) {
