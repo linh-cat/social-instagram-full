@@ -72,17 +72,17 @@ function SinglePost() {
             </div>
           ))}
         </div>
-        <div className="comment">
+        <form className="comment">
           <img src={smile} alt="" />
           <input
             type="text"
             placeholder="Your comment"
             onChange={(e) => setComment(e.target.value)}
           />
-          <button type="button" onClick={(e) => postComment(e, post.id)}>
+          <button type="submit" onClick={(e) => postComment(e, post.id)}>
             Comment
           </button>
-        </div>
+        </form>
       </div>
     </div>
   );

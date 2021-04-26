@@ -11,14 +11,14 @@ function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState("");
-  const [information, setInformation] = useState("");
+  const [address, setAddress] = useState("");
 
   const user = {
     username,
     email,
     password,
     confirmPassword,
-    information,
+    address,
   };
 
   const register = async (e) => {
@@ -68,7 +68,7 @@ function Register() {
       <input
         type="text"
         placeholder="Information"
-        onChange={(e) => setInformation(e.target.value)}
+        onChange={(e) => setAddress(e.target.value)}
       />
 
       {errors && <p className="errors">{errors}</p>}

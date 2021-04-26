@@ -58,9 +58,17 @@ function Home() {
       });
   };
 
-  const deletePost = (id) => {
-    console.log(id);
-    axios.delete(`/post/${id}`).then(window.location.reload());
+  const deletePost = (id, author) => {
+    let username = localStorage.getItem("username");
+    console.log(id, typeof username, typeof author);
+    console.log(username, author);
+    if (username === author) {
+      axios.delete(`/post/${id}`).then(window.location.reload());
+    } else {
+      alert("Not allow!!!!!");
+      return;
+    }
+    // alert("Incomplete");
   };
 
   return (
@@ -82,7 +90,10 @@ function Home() {
                 <img src={more} alt="More" className="more" />
                 <div className="menu__content">
                   <p className="edit">Edit</p>
-                  <p className="delete" onClick={() => deletePost(val.id)}>
+                  <p
+                    className="delete"
+                    onClick={() => deletePost(val.id, val.author)}
+                  >
                     Delete
                   </p>
                 </div>
@@ -115,17 +126,17 @@ function Home() {
               <strong>{val.likes} Likes</strong>
               <p>{val.body}</p>
 
-              <div className="comment">
+              <form className="comment">
                 <img src={smile} alt="" />
                 <input
                   type="text"
                   placeholder="Add comment"
                   onChange={(e) => setComment(e.target.value)}
                 />
-                <button type="reset" onClick={(e) => postComment(e, val.id)}>
+                <button type="submit" onClick={(e) => postComment(e, val.id)}>
                   Comment
                 </button>
-              </div>
+              </form>
             </footer>
           </article>
         </section>

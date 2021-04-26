@@ -86,7 +86,7 @@
   display: flex;
 }
 .profile .list__post--item:hover .post-image {
-  opacity: 0.9;
+  opacity: 0.5;
 }
 
 .profile .list__post .list__post--item {

@@ -45,7 +45,7 @@ function Profile() {
             <h3>{localStorage.getItem("username")}</h3>
             <button>Message</button>
           </div>
-          <p>Address: {user.address}.</p>
+          <p>Address: {user.address ? user.address : "No update"}.</p>
           <p>Email: {user.email}.</p>
         </div>
       </header>

@@ -49,13 +49,13 @@ function Header() {
             <div onClick={(e) => redirectUser(e, userId)}>
               <h4>Hi {user}</h4>
             </div>
-            <div onClick={logout}>
-              <img src={exit} alt="" />
-              <p>Logout</p>
-            </div>
             <div onClick={() => history.push("/new")}>
               <img src={plus} alt="" />
               <p>Post</p>
+            </div>
+            <div onClick={logout}>
+              <img src={exit} alt="" />
+              <p>Logout</p>
             </div>
           </div>
         </div>
